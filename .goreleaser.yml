@@ -1,0 +1,30 @@
+builds:
+  # List of builds
+  - # First Build
+    env:
+    - CGO_ENABLED=0
+    binary: bin/{{ .ProjectName }}
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - 386
+      - arm64
+    targets:
+      - linux_386
+      - linux_amd64
+      - windows_386
+      - windows_amd64
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}_sha512-checksums.txt"
+  algorithm: sha512
+
+archives:
+  - id: tar
+    format: tar.gz
+    files:
+      - LICENSE
+      - README.md
+      - CHANGELOG.md
