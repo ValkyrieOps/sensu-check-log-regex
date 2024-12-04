@@ -227,7 +227,9 @@ func executeCheck(event *types.Event) (int, error) {
 				fmt.Println("CRITICAL\nError encoding result buffer")
 				return sensu.CheckStateCritical, nil
 			}
-			matches_return = append(matches_return, result.Match)
+			filename := filepath.Base(matches[log_element])
+			match_with_filename := fmt.Sprintf("%s: %s", filename, result.Match)
+			matches_return = append(matches_return, match_with_filename)
 
 		}
 
